@@ -1,5 +1,6 @@
 //% color="#AA278D" weight=100 icon="\uf001" block="AY-8913"
 namespace ay8913 {
+    // Pôvodný blok Send Data
     //% blockId=ay8913SendData block="Send Data Reg %reg|Data %data|BDIR %bdir|BC1 %bc1|CHIP SELECT %cs|D7 %d7|D6 %d6|D5 %d5|D4 %d4|D3 %d3|D2 %d2|D1 %d1|D0 %d0"
     //% reg.min=0 reg.max=15
     //% data.min=0 data.max=255
@@ -34,5 +35,20 @@ namespace ay8913 {
         pins.digitalWritePin(d2, (data & 0x04) ? 1 : 0);
         pins.digitalWritePin(d1, (data & 0x02) ? 1 : 0);
         pins.digitalWritePin(d0, (data & 0x01) ? 1 : 0);
+    }
+
+    // Nový blok Reset Chip
+    //% blockId=ay8913ResetChip block="Reset Chip BDIR %bdir|BC1 %bc1|CHIP SELECT %cs"
+    export function resetChip(bdir: DigitalPin, bc1: DigitalPin, cs: DigitalPin): void {
+        // Inicializácia čipu AY-3-8913
+        pins.digitalWritePin(bdir, 0);
+        pins.digitalWritePin(bc1, 0);
+        pins.digitalWritePin(cs, 1); // Negatívna logika
+        control.waitMicros(1); // Časové oneskorenie pre reset
+
+        // Nastaviť čip do východiskového stavu
+        pins.digitalWritePin(bdir, 0);
+        pins.digitalWritePin(bc1, 1);
+        pins.digitalWritePin(cs, 0); // Negatívna logika
     }
 }
