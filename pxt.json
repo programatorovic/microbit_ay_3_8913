@@ -1,6 +1,6 @@
 {
   "name": "AY-8913",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Rozšírenie pre ovládanie zvukového procesora AY-3-8913 cez Micro:bit.",
   "files": [
     "main.ts",
