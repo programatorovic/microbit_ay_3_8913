@@ -8,7 +8,9 @@
     "custom.ts",
     "icon.png"
   ],
-  "dependencies": {},
+  "dependencies": {
+    "microbit_ay_3_8913": "https://github.com/programatorovic/microbit_ay_3_8913.git"
+  },
   "supportedTargets": [
     "microbit"
   ]
